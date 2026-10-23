@@ -134,10 +134,3 @@ Copyright © 2026 **Min SiThu (devminsithu)**.
 Project source is distributed under the [MIT License](LICENSE). Third-party
 packages retain their own licenses. MIT permits reuse and redistribution while
 requiring preservation of the copyright and permission notice.
-
-## Design and implementation
-
-Application logic and interface were written specifically for this project, without
-cloning another repository or importing a dashboard template. The project uses
-standard Python, Streamlit and dnspython APIs. The networking concepts themselves
-are established techniques. Diagnostic summaries do not establish a definitive root cause. Baseline latency differences are single observations, not trends.
