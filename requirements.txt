@@ -1,0 +1,2 @@
+streamlit>=1.40,<2
+dnspython>=2.6,<3
