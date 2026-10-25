@@ -14,12 +14,11 @@ Built with Python and Streamlit. No API keys or paid services required.
 - Single TCP port connectivity test, including IPv4 and IPv6 targets
 - Configurable timeouts, explicit failure states and raw ping output
 - Session history (500 most recent checks), CSV export and clear-history control
-- Responsive dashboard with author links
 - Diagnostic summaries based on check results
 - Pin a baseline and compare status, details and latency for the same checks
 - Baselines and history are session-only; clearing history also clears baselines
 - Input validation, shell-free process execution and CSV formula escaping
-- Automated tests and a Linux/macOS/Windows GitHub Actions matrix
+- Automated tests (pytest)
 
 ## Start on macOS or Linux
 
@@ -34,6 +33,15 @@ python -m streamlit run app.py
 
 Open http://127.0.0.1:8501. Stop with Ctrl+C. Next time, activate `.venv` and run the last command again.
 On Debian/Ubuntu, if ping is missing, install your distribution's `iputils-ping` package.
+
+## Live preview (GitHub Codespaces)
+
+This is a Streamlit app, so it cannot run on GitHub Pages. Preview it in Codespaces instead:
+
+1. On GitHub, click **Code → Codespaces → Create codespace on main** (after this change is merged).
+2. The devcontainer installs `requirements.txt` automatically and forwards port **8501**.
+3. In the Codespaces terminal, run `python -m streamlit run app.py --server.port=8501 --server.address=0.0.0.0 --server.headless=true`.
+4. Open the forwarded port **8501** from the Ports panel.
 
 ## Start on Windows (Command Prompt)
 
@@ -91,40 +99,15 @@ python -m pytest -q
 ```
 
 Tests mock external DNS and ping and use a local TCP listener. No Internet access required.
-The GitHub Actions workflow tests Python 3.11/3.12 on Linux, macOS and Windows.
-
-## Publish to your GitHub
-
-Create an empty repository named `netcheck-dashboard` under `devminsithu` on GitHub.
-Do not initialize it with a README, license or gitignore; these are included here.
-Then, inside the extracted project folder:
-
-```bash
-git init -b main
-git add .
-git commit -m "Build NetCheck network troubleshooting dashboard"
-git remote add origin https://github.com/devminsithu/netcheck-dashboard.git
-git push -u origin main
-```
-
-Authenticate using your normal GitHub sign-in or credential manager. This archive
-contains source code, not an already-created GitHub repository. Alternatively,
-with authenticated GitHub CLI installed, after the initial commit run:
-
-```bash
-gh repo create devminsithu/netcheck-dashboard --public --source=. --remote=origin --push
-```
-
-Choose `--private` instead if you want a private repository.
 
 ## Project structure
 
 - `app.py`: Streamlit interface and session history
 - `netcheck/checks.py`: validation, DNS, ping and TCP diagnostics
+- `netcheck/insights.py`: result summaries and baseline comparison
 - `netcheck/export.py`: safe CSV serialization
-- `tests/`: unit, local TCP integration and UI tests
-- `.streamlit/config.toml`: theme and local server defaults
-- `.github/workflows/tests.yml`: automated test matrix
+- `test_*.py`: unit, local TCP integration and UI tests
+- `.devcontainer/devcontainer.json`: Codespaces preview (port 8501)
 
 ## Author and license
 
@@ -132,5 +115,4 @@ Copyright © 2026 **Min SiThu (devminsithu)**.
 [minsithu.org](https://minsithu.org/) · [Contact](https://minsithu.org/contact/)
 
 Project source is distributed under the [MIT License](LICENSE). Third-party
-packages retain their own licenses. MIT permits reuse and redistribution while
-requiring preservation of the copyright and permission notice.
+packages retain their own licenses.
