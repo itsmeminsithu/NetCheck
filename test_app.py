@@ -4,7 +4,7 @@ from unittest.mock import patch
 from streamlit.testing.v1 import AppTest
 from netcheck.checks import result
 
-APP = str(Path(__file__).resolve().parents[1] / 'app.py')
+APP = str(Path(__file__).resolve().parents[0] / 'app.py')
 
 
 def test_ui_validation():
