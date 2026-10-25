@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+# Virtual environments
+.venv/
+venv/
+ENV/
+# Test / tool caches
+.pytest_cache/
+.coverage
+htmlcov/
+# Streamlit / local data
+.streamlit/secrets.toml
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+# Local exports (browser downloads saved into the project folder)
+netcheck-results.csv
